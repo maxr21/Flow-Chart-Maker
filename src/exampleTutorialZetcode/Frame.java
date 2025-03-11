@@ -58,9 +58,7 @@ public class Frame extends JFrame {
         
         exportB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-            	
             	board.setImageMake(true);
-            	System.out.println("imageify = true");
             }
         });  
         
@@ -128,12 +126,5 @@ public class Frame extends JFrame {
         }
         
         this.add(board);
-    }
-    
-    public static void main(String[] args) {
-        
-        Frame ex = new Frame();
-
-        ex.setVisible(true);
     }
 }

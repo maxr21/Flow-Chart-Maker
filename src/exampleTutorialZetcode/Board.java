@@ -55,6 +55,8 @@ public class Board extends JPanel implements ActionListener {
   BufferedImage flowchartImg;
   private int fileNum;
 
+  private Image bin;
+
   //Accessor for LinkedList
   public LinkedList<flowItem> getList() {
     return this.flowItemList;
@@ -79,10 +81,10 @@ public class Board extends JPanel implements ActionListener {
     //default value that will be overwritten
     int min = 100000;
 
-    for (int i = 0; i < a.length; i++) {
+    for (int j : a) {
       //checks if current min value is greater than item currently being inspected
-      if (min > a[i]) {
-        min = a[i];
+      if (min > j) {
+        min = j;
       }
     }
     return min;
@@ -109,16 +111,11 @@ public class Board extends JPanel implements ActionListener {
       @Override
       public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
-        if (e.getKeyChar() == 'e') {
-          //imageMake = true;
-          System.out.println("imageify = true");
-        }
       }
 
       @Override
       public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
-        //System.out.println(e.getKeyChar());
       }
     };
     this.addKeyListener(kl);
@@ -192,8 +189,8 @@ public class Board extends JPanel implements ActionListener {
           for (int i = 0; i < lineList.size(); i++) {
 
             //makes array of x and y for lines so I can use my getLargest & smalles methods
-            int[] x = { lineList.get(i).getX1(), lineList.get(i).getX2() };
-            int[] y = { lineList.get(i).getY1(), lineList.get(i).getY2() };
+            int[] x = {lineList.get(i).getX1(), lineList.get(i).getX2()};
+            int[] y = {lineList.get(i).getY1(), lineList.get(i).getY2()};
 
             int leftX = getSmallest(x);
             int rightX = getLargest(x);
@@ -223,9 +220,7 @@ public class Board extends JPanel implements ActionListener {
       @Override
       public void mouseMoved(MouseEvent e) {
         // TODO Auto-generated method stub
-
       }
-
     };
 
     this.addMouseMotionListener(mouseMotionListener);
@@ -244,7 +239,7 @@ public class Board extends JPanel implements ActionListener {
         // TODO Auto-generated method stub
         // first click, checks that LMB was clicked
         if (e.getButton() == 1) {
-          if (flag == false) {
+          if (!flag) {
             //sets x&y of mouse to x&y of line's first point
             x1 = e.getX();
             y1 = e.getY();
@@ -304,7 +299,6 @@ public class Board extends JPanel implements ActionListener {
     this.addMouseListener(mouseListener);
   }
 
-  private Image bin;
 
   private void loadImage() {
     //loads image, bin.png will always exist
@@ -336,42 +330,38 @@ public class Board extends JPanel implements ActionListener {
     super.paintComponent(g);
 
     //loop through flowItems to draw each one
-    for (int i = 0; i < flowItemList.size(); i++) {
-      //this.requestFocusInWindow();
-      flowItemList.get(i).draw(g);
+    for (flowItem flowItem : flowItemList) {
+
+      flowItem.draw(g);
 
       //this checks whether the text written on a flowItem is larger than the text box
-      if (flowItemList.get(i).getText().getHorizontalVisibility().getValue() > 1) {
+      if (flowItem.getText().getHorizontalVisibility().getValue() > 1) {
 
         //increases the width of the textbox and flowItem object by 8 every 25ms that the text is too large for the box
-        flowItemList.get(i).setTextW(8);
-        flowItemList.get(i).setW(8);
+        flowItem.setTextW(8);
+        flowItem.setW(8);
       }
-      //System.out.println(frame.isImageMake());
-
     }
 
     if (imageMake) {
-      System.out.println("imageify = true and in the if");
       BufferedImage flowchartImg = new BufferedImage(1800, 900, BufferedImage.TYPE_INT_RGB);
 
       Graphics2D g2d = flowchartImg.createGraphics();
       g2d.setColor(Color.WHITE);
       g2d.fillRect(0, 0, 1800, 900);
 
-      for (int i = 0; i < lineList.size(); i++) {
-        int x1 = lineList.get(i).getX1();
-        int y1 = lineList.get(i).getY1();
-        int x2 = lineList.get(i).getX2();
-        int y2 = lineList.get(i).getY2();
+      for (Line line : lineList) {
+        int x1 = line.getX1();
+        int y1 = line.getY1();
+        int x2 = line.getX2();
+        int y2 = line.getY2();
         g2d.setColor(Color.BLACK);
-        lineList.get(i).imageify(g, flowchartImg);
-        g2d.drawString(lineList.get(i).getTextField().getText(), (x1 + x2) / 2 + 10,
+        line.imageify(g, flowchartImg);
+        g2d.drawString(line.getTextField().getText(), (x1 + x2) / 2 + 10,
             (y1 + y2) / 2 - 25);
       }
 
-      for (int i = 0; i < flowItemList.size(); i++) {
-        flowItem obj = flowItemList.get(i);
+      for (flowItem obj : flowItemList) {
         obj.imageify(g, flowchartImg);
         int x = obj.getX();
         int y = obj.getY();
@@ -405,18 +395,17 @@ public class Board extends JPanel implements ActionListener {
         e.printStackTrace();
       }
       setImageMake(false);
-    }//System.out.println("imageify = false");
+    }
 
     //l1 checks that at least 1 line exists so that error doesnt occur when looping through empty linked list (loop parameter error)
     if (l1) {
-      for (int i = 0; i < lineList.size(); i++) {
-        lineList.get(i).draw(g);
+      for (Line line : lineList) {
+        line.draw(g);
       }
     }
     //The below is the bin
     g.drawImage(bin, 1350, 700, this);
     Toolkit.getDefaultToolkit().sync();
-
   }
 
 
