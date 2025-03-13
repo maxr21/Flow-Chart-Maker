@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -89,7 +88,7 @@ public class Board extends JPanel implements ActionListener {
     return min;
   }
 
-  public Board() {
+  public Board() throws IOException {
 
     initBoard();
 
@@ -296,15 +295,15 @@ public class Board extends JPanel implements ActionListener {
   }
 
 
-  private void loadImage() {
+  private void loadImage() throws IOException {
     //loads image, bin.png will always exist
-    ImageIcon ii = new ImageIcon(
-        Objects.requireNonNull(getClass().getClassLoader().getResource("bin.png")));
+    BufferedImage image = ImageIO.read(new File("docs" + File.separator + "bin.png"));
+    ImageIcon ii = new ImageIcon(image);
     bin = ii.getImage();
   }
 
 
-  private void initBoard() {
+  private void initBoard() throws IOException {
     //bg colour
     setBackground(Color.WHITE);
     //size of panel

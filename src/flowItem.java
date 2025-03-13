@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 
 //super class of all flowchart components
 public class flowItem {
-// all variables that the different components use, e.g polygons use xvert and y vert, rect uses x&y
+// all variables that the different components use, e.g. polygons use xVert and yVert, rect uses x&y
 	public int x;
 	public int y;
 	public int w;
