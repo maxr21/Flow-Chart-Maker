@@ -1,3 +1,6 @@
+package view;
+
+import model.Line;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -20,6 +23,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import model.Diamond;
+import model.FlowItem;
+import model.RectBox;
+
 
 // to do:
 
@@ -40,7 +47,7 @@ public class Board extends JPanel implements ActionListener {
   private final int DELAY = 25;
 
   //made list of flowItems to store the rects and diamonds etc
-  public LinkedList<flowItem> flowItemList;
+  public LinkedList<FlowItem> flowItemList;
   //another linked list to store my lines
   public LinkedList<Line> lineList;
 
@@ -54,7 +61,7 @@ public class Board extends JPanel implements ActionListener {
   private Image bin;
 
   //Accessor for LinkedList
-  public LinkedList<flowItem> getList() {
+  public LinkedList<FlowItem> getList() {
     return this.flowItemList;
   }
 
@@ -121,9 +128,9 @@ public class Board extends JPanel implements ActionListener {
 
           if (!isMoving) {
 
-            // moving flowItems -- if checks the subclass of flowItem
+            // moving flowItems -- if checks the subclass of model.FlowItem
             if (flowItemList.get(i) instanceof RectBox) {
-              //RectBox movement
+              //model.RectBox movement
 
               //checks position of mouse vs area covered by shape,
               //first that  right side > mouse x > left side then same for y
@@ -323,14 +330,14 @@ public class Board extends JPanel implements ActionListener {
     super.paintComponent(g);
 
     //loop through flowItems to draw each one
-    for (flowItem flowItem : flowItemList) {
+    for (FlowItem flowItem : flowItemList) {
 
       flowItem.draw(g);
 
-      //this checks whether the text written on a flowItem is larger than the text box
+      //this checks whether the text written on a model.FlowItem is larger than the text box
       if (flowItem.getText().getHorizontalVisibility().getValue() > 1) {
 
-        //increases the width of the textbox and flowItem object by 8 every 25ms that the text is too large for the box
+        //increases the width of the textbox and model.FlowItem object by 8 every 25ms that the text is too large for the box
         flowItem.setTextW(8);
         flowItem.setW(8);
       }
@@ -354,7 +361,7 @@ public class Board extends JPanel implements ActionListener {
             (y1 + y2) / 2 - 25);
       }
 
-      for (flowItem obj : flowItemList) {
+      for (FlowItem obj : flowItemList) {
         obj.imageify(g, flowchartImg);
         int x = obj.getX();
         int y = obj.getY();

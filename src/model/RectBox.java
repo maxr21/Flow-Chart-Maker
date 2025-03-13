@@ -1,3 +1,4 @@
+package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,10 +7,9 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 
-public class RectBox extends flowItem {
+public class RectBox extends FlowItem {
 
 	private int rectW = 100;
 	private final int rectH = 50;

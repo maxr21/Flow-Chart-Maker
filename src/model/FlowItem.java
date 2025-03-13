@@ -1,3 +1,4 @@
+package model;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 //super class of all flowchart components
-public abstract class flowItem {
+public abstract class FlowItem {
 // all variables that the different components use, e.g. polygons use xVert and yVert, rect uses x&y
 	public int x;
 	public int y;
@@ -21,7 +22,7 @@ public abstract class flowItem {
 	public JPanel panel;
 	public String textObj = "";
 	
-	public flowItem(JPanel panel){
+	public FlowItem(JPanel panel){
 		this.panel = panel;
 		//every component has a textfield
         textField = new JTextField();
@@ -37,7 +38,7 @@ public abstract class flowItem {
         panel.add(textField);
 	}
 	
-	protected abstract void draw(Graphics g);
+	public abstract void draw(Graphics g);
 	
 	public void imageify(Graphics g, BufferedImage flowchartImg) {
 
@@ -80,49 +81,49 @@ public abstract class flowItem {
     }
 
 
-	protected int getX(){
+	public int getX(){
 		return x;
 	}
 
-	protected void setX(int x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 
-	protected int getY(){
+	public int getY(){
 		return y;
 	}
 
-	protected void setY(int y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 
-	protected int getW() {
+	public int getW() {
 		return w;
 	}
 
 	public abstract void setW(int w);
 
-	protected int getH() {
+	public int getH() {
 		return h;
 	}
 
-	protected int[] getXVertices() {
+	public int[] getXVertices() {
 		return xVert;
 	}
 
-	protected int[] getYVertices() {
+	public int[] getYVertices() {
 		return yVert;
 	}
 
-	protected JTextField getText() {
+	public JTextField getText() {
 		return this.textField;
 	}
 
-	protected void setTextW (int w) {
+	public void setTextW(int w) {
 		this.textFieldSize = this.textFieldSize + w;
 	}
 	
-	protected void deleteTextObj() {
+	public void deleteTextObj() {
 		this.panel.remove(textField);
 		this.textField = null;
 	}

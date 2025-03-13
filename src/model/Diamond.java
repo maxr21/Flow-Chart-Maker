@@ -1,3 +1,4 @@
+package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,9 +7,8 @@ import java.awt.Polygon;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-public class Diamond extends flowItem {
+public class Diamond extends FlowItem {
 
   //Starting X and Y coordinates of centre of shape
   private int x = 175;
@@ -34,13 +34,13 @@ public class Diamond extends flowItem {
 
     g2d.setColor(Color.ORANGE);
 
-    //Moving the x vertices of Diamond (offset is the distance from the middle of the diamond)
+    //Moving the x vertices of model.Diamond (offset is the distance from the middle of the diamond)
     diamX[0] = x - offsetX;
     diamX[1] = x;
     diamX[2] = x + offsetX;
     diamX[3] = x;
 
-    //Moving the y vertices of Diamond (offset is the distance from the middle of the diamond)
+    //Moving the y vertices of model.Diamond (offset is the distance from the middle of the diamond)
     diamY[0] = y;
     diamY[1] = y + offsetY;
     diamY[2] = y;
@@ -78,7 +78,7 @@ public class Diamond extends flowItem {
   }
 
   @Override
-  protected int getW() {
+  public int getW() {
     //calculates width
     return getLargest(diamX) - getSmallest(diamX);
   }

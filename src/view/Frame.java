@@ -1,3 +1,4 @@
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -5,12 +6,14 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import model.Diamond;
+import model.RectBox;
+import model.SlantSqr;
 
 
 public class Frame extends JFrame {
@@ -43,14 +46,14 @@ public class Frame extends JFrame {
     BufferedImage export = ImageIO.read(new File("docs" + File.separator + "exportIcon.png"));
     Icon exportIcon = new ImageIcon(export);
 
-    //RectBox button image
+    //model.RectBox button image
     BufferedImage rect = ImageIO.read(new File("docs" + File.separator + "rectButtonIcon.png"));
     Icon rectIcon = new ImageIcon(rect);
 
 //    Icon rectIcon = new ImageIcon(
 //        Objects.requireNonNull(this.getClass().getClassLoader()
 //            .getResource("docs" + File.separator + "rectButtonIcon.png")));
-    //Diamond button image
+    //model.Diamond button image
     BufferedImage diamond = ImageIO.read(new File("docs" + File.separator + "diamondButtonIcon.png"));
     Icon diamondIcon = new ImageIcon(diamond);
 
@@ -99,7 +102,7 @@ public class Frame extends JFrame {
       }
     });
 
-    //Diamond Button
+    //model.Diamond Button
     JButton diamondButton = new JButton(diamondIcon);
     diamondButton.setContentAreaFilled(false);
     diamondButton.setFocusPainted(false);
@@ -110,7 +113,7 @@ public class Frame extends JFrame {
     //listener for when pushing the button
     diamondButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        //adds a Diamond object to board when pushed
+        //adds a model.Diamond object to board when pushed
         board.getList().add(new Diamond(board));
 
       }
