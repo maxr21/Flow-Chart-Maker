@@ -12,9 +12,8 @@ public class Line {
 	int y1;
 	int y2;
 	
-	public JTextField textField;
-	public int textFieldSize = 40;
-	public JPanel panel;
+	private final JTextField textField;
+	private JPanel panel;
 	
 	public Line(int x1, int y1, int x2, int y2) {
 		//When constructor is called, i chose where the line start and ends

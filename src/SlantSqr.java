@@ -30,7 +30,6 @@ public class SlantSqr extends flowItem{
 	        textField.setForeground(Color.BLACK);
 		}
 		public void draw(Graphics g) {
-			super.draw(g);
 			Graphics2D g2d = (Graphics2D) g;
 			
 			g2d.setColor(Color.RED);
@@ -63,28 +62,10 @@ public class SlantSqr extends flowItem{
 			g2d.fillPolygon(slantX, slantY, 4);
 		}
 
-		
-		// mutator and accessor methods for slant square: x, y, x vertices, y vertices
-		public void setX(int x) {
-			this.x = x;
-		}
-		
-		public int getX(){
-			return x;
-		}
-		
-		public void setY(int y) {
-			this.y = y;
-		}
-		
-		public int getY(){
-			return y;
-		}
-		
-		public int getW() {
+		@Override
+		protected int getW() {
 			//calculates width
-			int w =  getLargest(slantX) - getSmallest(slantX);
-			return w;
+      return getLargest(slantX) - getSmallest(slantX);
 		} 
 		public void setW(int w) {
 			// increases width of SlantedSqr, w is set to eight for all shapes so I adjust it here to a reasonable value by /2
@@ -98,8 +79,4 @@ public class SlantSqr extends flowItem{
 		public int[] getYVertices() {
 			return slantY;
 		}
-		public JTextField getText() {
-			return this.textField;
-		}
-
 }

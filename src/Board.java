@@ -15,8 +15,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
-
-import java.util.Objects;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -60,7 +58,7 @@ public class Board extends JPanel implements ActionListener {
     return this.flowItemList;
   }
 
-  //method for finding largest value in an array
+  //method for finding the largest value in an array
   private static int getLargest(int[] a) {
     //default value that will be overwritten
     int max = 0;
@@ -74,7 +72,7 @@ public class Board extends JPanel implements ActionListener {
     return max;
   }
 
-  //method for finding smallest value in an array
+  //method for finding the smallest value in an array
   private static int getSmallest(int[] a) {
     //default value that will be overwritten
     int min = 100000;
